@@ -1,6 +1,8 @@
 // 假设Deepseek API为RESTful，需替换为真实接口
 const API_URL = "https://api.deepseek.com/chat/completions";
-const API_KEY = "sk-REVOKED_DEEPSEEK_KEY"; // 用户提供的真实key
+// 安全说明：API Key 不再硬编码。请通过环境变量/后端代理注入，或让用户在设置中填写。
+// 构建时使用 webpack DefinePlugin 注入：new webpack.DefinePlugin({ "process.env.DEEPSEEK_API_KEY": JSON.stringify(process.env.DEEPSEEK_API_KEY || "") })
+const API_KEY = process.env.DEEPSEEK_API_KEY || "";
 
 const SYSTEM_PROMPT_ZH = "你是一个专业的旅行规划师。请根据用户输入的景点、关键词或社交平台内容，为中国旅行者生成合理的行程天数建议，并输出多种版本（如紧凑/舒适/放松），每个版本请结构化输出每日行程安排。";
 const SYSTEM_PROMPT_EN = "You are a professional travel planner. Based on the user's input (spots, keywords, or social links), generate a reasonable itinerary for a trip to China, including day suggestions and multiple versions (compact/comfortable/relaxed). For each version, output a structured daily plan.";
